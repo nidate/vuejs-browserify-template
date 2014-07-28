@@ -18,4 +18,10 @@ Open http://localhost:8080
 
 Write code ./index.js
 
+## Client test
 
+```
+./node_modules/.bin/gulp client-test
+```
+
+Run test/client/**_test.js code with mocha on PhantomJS.

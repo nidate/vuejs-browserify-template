@@ -68,13 +68,13 @@ gulp.task('test', function() {
     .on('error', gutil.log);
 });
 
-gulp.task('build-test', ['build'], function() {
+gulp.task('build-client-test', ['build'], function() {
   return gulp.src(['./test/client/**_test.js'])
     .pipe(concat('client_test_all.js'))
     .pipe(gulp.dest('./work/'));
 });
 
-gulp.task('test-client', ['build-test'], function() {
+gulp.task('client-test', ['build-client-test'], function() {
   return gulp.src('./work/runner.html').pipe(mochaPhantomJS());
 });
 

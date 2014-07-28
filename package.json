@@ -27,6 +27,8 @@
   },
   "dependencies": {
     "vue": "^0.10.5",
-    "jquery": "^2.1.1"
+    "jquery": "^2.1.1",
+    "gulp-concat": "^2.3.4",
+    "gulp-mocha-phantomjs": "^0.3.0"
   }
 }

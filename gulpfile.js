@@ -7,8 +7,10 @@ var gutil = require('gulp-util');
 var clean = require('gulp-clean');
 var plumber = require('gulp-plumber');
 var uglify = require('gulp-uglifyjs');
+var concat = require('gulp-concat');
 var path = require('path');
 var connect = require('gulp-connect');
+var mochaPhantomJS = require('gulp-mocha-phantomjs');
 var exposify = require('exposify');
 var config = require('./package.json');
 
@@ -61,9 +63,19 @@ gulp.task('uglify', ['build'], function() {
 });
 
 gulp.task('test', function() {
-    return gulp.src(['./test/**/**_test.js', '!./test/client'], { read: false })
-        .pipe(mocha({ reporter: 'list' }))
-        .on('error', gutil.log);
+  return gulp.src(['./test/**/**_test.js', '!./test/client'], { read: false })
+    .pipe(mocha({ reporter: 'list' }))
+    .on('error', gutil.log);
+});
+
+gulp.task('build-test', ['build'], function() {
+  return gulp.src(['./test/client/**_test.js'])
+    .pipe(concat('client_test_all.js'))
+    .pipe(gulp.dest('./work/'));
+});
+
+gulp.task('test-client', ['build-test'], function() {
+  return gulp.src('./work/runner.html').pipe(mochaPhantomJS());
 });
 
 gulp.task('clean', function() {

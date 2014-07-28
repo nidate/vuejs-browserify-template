@@ -1,22 +1,21 @@
 # Project Template for Vue.js and Browserify
 
-## Build
+## How to use this.
 
 ```
-npm run build
+git clone [this repository]
+rm -fr .git
 ```
 
-## Test
+Rename project name in package.json
 
 ```
-npm run test
+npm install
+npm run start # or ./node_modules/.bin/gulp watch
 ```
 
-## Run
+Open http://localhost:8080
 
-```
-$ npm start
-```
+Write code ./index.js
 
-and open http://localhost:8080
 

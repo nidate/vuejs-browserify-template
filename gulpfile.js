@@ -61,8 +61,8 @@ gulp.task('uglify', ['build'], function() {
     .pipe(gulp.dest(dest))
 });
 
-gulp.task('test', function() {
-  return gulp.src(['./test/**/**_test.js', '!./test/client'], { read: false })
+gulp.task('unit-test', function() {
+  return gulp.src(['./test/**/**_test.js', '!./test/client/**'], { read: false })
     .pipe(mocha({ reporter: 'list' }))
     .on('error', gutil.log);
 });
@@ -76,6 +76,8 @@ gulp.task('build-client-test', ['build'], function() {
 gulp.task('client-test', ['build-client-test'], function() {
   return gulp.src('./work/runner.html').pipe(mochaPhantomJS());
 });
+
+gulp.task('test', ['unit-test', 'client-test']);
 
 gulp.task('clean', function() {
   return gulp.src(path.join(dest, target_file)).pipe(clean());

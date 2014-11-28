@@ -11,17 +11,19 @@ Rename project name in package.json
 
 ```
 npm install
-npm run start # or ./node_modules/.bin/gulp watch
+npm start # or ./node_modules/.bin/gulp
 ```
 
 Open http://localhost:8080
 
 Write code ./index.js
 
-## Client test
+## test
 
 ```
-./node_modules/.bin/gulp client-test
+npm test
+# or
+./node_modules/.bin/gulp test
 ```
 
 Run test/client/**_test.js code with mocha on PhantomJS.

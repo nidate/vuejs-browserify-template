@@ -25,7 +25,7 @@
     "gulp-clean": "^0.3.1"
   },
   "dependencies": {
-    "vue": "^0.10.5",
+    "vue": "^0.11.0",
     "jquery": "^2.1.1",
     "gulp-concat": "^2.3.4",
     "gulp-mocha-phantomjs": "^0.3.0",

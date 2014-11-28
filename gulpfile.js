@@ -9,7 +9,7 @@ var plumber = require('gulp-plumber');
 var uglify = require('gulp-uglifyjs');
 var concat = require('gulp-concat');
 var path = require('path');
-var connect = require('gulp-connect');
+var webserver = require('gulp-webserver');
 var mochaPhantomJS = require('gulp-mocha-phantomjs');
 var exposify = require('exposify');
 var config = require('./package.json');
@@ -18,22 +18,21 @@ var project_name = config.name;
 var target_file = project_name + '.js';
 var dest = './public/js/';
 
-gulp.task('connect', ['build'], function() {
-  connect.server({
-    root: ['public'],
-    livereload: true,
-    port: 8080
-  });
+gulp.task('default', ['watch']);
+
+gulp.task('webserver', ['build'], function() {
+  return gulp.src('public')
+    .pipe(webserver({
+      host: '0.0.0.0',
+      livereload: true,
+      port: 8080,
+      filter: function(filename) {
+        return filename.match(/public/)
+      }
+    }));
 });
 
-gulp.task('watch', ['connect'], function() {
-  gulp.watch([
-    path.join(dest, target_file),
-    "./public/**/*.html",
-    "!**/.#*", "!**/#*", "!**/*~"
-  ]).on('change', function(changed) {
-    gulp.src(changed.path).pipe(connect.reload());
-  });
+gulp.task('watch', ['webserver'], function() {
   gulp.watch(['index.js', 'lib/**/*', "!**/.#*", "!**/#*", "!**/*~"], ['build']);
 });
 

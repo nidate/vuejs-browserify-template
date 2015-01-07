@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var browserify = require('browserify');
 var stringify = require('stringify');
+var coffeeify = require('coffeeify');
 var source = require('vinyl-source-stream')
 var mocha = require('gulp-mocha');
 var gutil = require('gulp-util');
@@ -46,6 +47,7 @@ exposify.config = {
 gulp.task('build', function() {
   return browserify(['./index.js'])
     .exclude('./node_modules/jquery/dist/jquery.js')
+    .transform(coffeeify)
     .transform(exposify)
     .transform(stringify(['.html']))
     .require('./index', {expose: project_name})

@@ -27,3 +27,6 @@ npm test
 ```
 
 Run test/client/**_test.js code with mocha on PhantomJS.
+
+## TODO
+- [ ] coffee test task

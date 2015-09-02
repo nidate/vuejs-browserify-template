@@ -26,7 +26,7 @@ gulp.task('webserver', ['build'], function() {
     .pipe(webserver({
       host: '0.0.0.0',
       livereload: true,
-      port: 8080,
+      port: 8888,
       filter: function(filename) {
         return filename.match(/public/)
       }

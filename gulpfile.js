@@ -50,7 +50,7 @@ gulp.task('build', function() {
     .transform(coffeeify)
     .transform(exposify)
     .transform(stringify(['.html']))
-    .require('./index', {expose: project_name})
+    .require('./index.js', {expose: project_name})
     .bundle()
     .pipe(source(target_file))
     .pipe(plumber())

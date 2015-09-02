@@ -1,0 +1,7 @@
+<ul>
+  <li v-repeat="items">
+    {{ message }}
+  </li>
+</ul>
+
+<input type="text" v-model="message" v-on="keyup: addItem()| key enter" />

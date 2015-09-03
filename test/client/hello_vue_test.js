@@ -13,7 +13,7 @@ describe('HellowVue', function() {
   it('should render message', function(done) {
     var lib = require('vuejs-browserify-template');
     var vue = new lib.HelloVue({el: '#test'});
-    expect($('#test div').text()).to.eq('Hello Vue.js');
+    expect($('#test').text()).to.eq('Hello Vue.js');
     done();
   });
 });

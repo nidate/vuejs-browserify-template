@@ -22,7 +22,10 @@
     "browserify": "~5.9.1",
     "gulp": "~3.8.6",
     "exposify": "~0.2.0",
-    "gulp-clean": "~0.3.1"
+    "gulp-clean": "~0.3.1",
+    "vueify": "~1.1.5",
+    "stylus": "~0.52.4",
+    "jade": "~1.11.0"
   },
   "dependencies": {
     "vue": "~0.12.0",

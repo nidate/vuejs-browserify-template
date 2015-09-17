@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var browserify = require('browserify');
 var stringify = require('stringify');
 var coffeeify = require('coffeeify');
+var vueify = require('vueify');
 var source = require('vinyl-source-stream')
 var mocha = require('gulp-mocha');
 var gutil = require('gulp-util');
@@ -50,7 +51,9 @@ gulp.task('build', function() {
     .transform(coffeeify)
     .transform(exposify)
     .transform(stringify(['.html']))
+    .transform(vueify)
     .require('./index.js', {expose: project_name})
+    .require('vue')
     .bundle()
     .pipe(source(target_file))
     .pipe(plumber())

@@ -8,7 +8,8 @@ h1(class="red") {{msg}}
 </template>
 
 <script lang="coffee">
-module.exports =
+Vue = require 'vue'
+module.exports = Vue.extend
   data: ->
     msg: 'Hello vueify!'
 </script>

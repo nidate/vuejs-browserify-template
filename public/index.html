@@ -19,10 +19,9 @@
   </div>
   <script>
     var lib = require('vuejs-browserify-template');
-    var Vue = require('vue');
     var helloVue = new lib.HelloVue({el: '#main'});
     var helloCoffee = new lib.HelloCoffee({el: '#coffee'});
-    var helloVueify = new Vue(lib.HelloVueify).$mount('#vueify');
+    var helloVueify = new lib.HelloVueify({el: '#vueify'});
     var items = new lib.Items({el: '#items'});
   </script>
 </body>

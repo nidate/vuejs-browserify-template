@@ -13,12 +13,16 @@
   </div>
   <div id="coffee">
   </div>
+  <div id="vueify">
+  </div>
   <div id="items">
   </div>
   <script>
     var lib = require('vuejs-browserify-template');
-    var vue = new lib.HelloVue({el: '#main'});
-    var coffee = new lib.HelloCoffee({el: '#coffee'});
+    var Vue = require('vue');
+    var helloVue = new lib.HelloVue({el: '#main'});
+    var helloCoffee = new lib.HelloCoffee({el: '#coffee'});
+    var helloVueify = new Vue(lib.HelloVueify).$mount('#vueify');
     var items = new lib.Items({el: '#items'});
   </script>
 </body>

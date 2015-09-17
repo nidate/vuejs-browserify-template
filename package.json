@@ -33,6 +33,7 @@
     "gulp-concat": "~2.3.4",
     "gulp-mocha-phantomjs": "~0.3.0",
     "gulp-webserver": "~0.8.7",
-    "coffeeify": "~1.0.0"
+    "coffeeify": "~1.0.0",
+    "coffee-script": "~1.10.0"
   }
 }

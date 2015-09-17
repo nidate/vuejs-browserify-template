@@ -14,7 +14,7 @@ npm install
 npm start # or ./node_modules/.bin/gulp
 ```
 
-Open http://localhost:8080
+Open http://localhost:8888
 
 Write code ./index.js
 

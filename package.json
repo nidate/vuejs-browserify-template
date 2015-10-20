@@ -28,7 +28,7 @@
     "jade": "~1.11.0"
   },
   "dependencies": {
-    "vue": "~0.12.0",
+    "vue": "~1.0.0",
     "jquery": "~2.1.1",
     "gulp-concat": "~2.3.4",
     "gulp-mocha-phantomjs": "~0.3.0",

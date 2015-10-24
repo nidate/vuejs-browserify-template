@@ -35,24 +35,24 @@ gulp.task('webserver', ['build'], function() {
 });
 
 gulp.task('watch', ['webserver'], function() {
-  gulp.watch(['index.js', 'lib/**/*', "!**/.#*", "!**/#*", "!**/*~"], ['build']);
+  gulp.watch(['index.*', 'lib/**/*', "!**/.#*", "!**/#*", "!**/*~"], ['build']);
 });
 
 /**
- * build index.js and copy to dest.
+ * build index.coffee and copy to dest.
  */
 exposify.config = {
   jquery: '$'
 };
 
 gulp.task('build', function() {
-  return browserify(['./index.js'])
+  return browserify(['./index.coffee'])
     .exclude('./node_modules/jquery/dist/jquery.js')
     .transform(coffeeify)
     .transform(exposify)
     .transform(stringify(['.html']))
     .transform(vueify)
-    .require('./index.js', {expose: project_name})
+    .require('./index.coffee', {expose: project_name})
     .require('vue')
     .bundle()
     .pipe(source(target_file))

@@ -10,22 +10,18 @@
 </head>
 <body>
   <div id="main">
-  </div>
-  <div id="coffee">
-  </div>
-  <div id="vueify">
-  </div>
-  <div id="items">
-  </div>
-  <div id="textList">
+    <ul>
+      <li> <a v-link="{path: '/'}">JavaScript</a>
+      <li> <a v-link="{path: '/hellocoffee'}">Coffee script</a>
+      <li> <a v-link="{path: '/hellovueify'}">Vueify</a>
+      <li> <a v-link="{path: '/items'}">Event handling</a>
+      <li> <a v-link="{path: '/textlist'}">Components</a>
+    </ul>
+    <router-view></router-view>
   </div>
   <script>
-    var lib = require('vuejs-browserify-template');
-    var helloVue = new lib.HelloVue({el: '#main'});
-    var helloCoffee = new lib.HelloCoffee({el: '#coffee'});
-    var helloVueify = new lib.HelloVueify({el: '#vueify'});
-    var items = new lib.Items({el: '#items'});
-    var textList = new lib.TextList({el: '#textList'});
+    var app = require('vuejs-browserify-template');
+    app('#main')
   </script>
 </body>
 </html>

@@ -17,3 +17,4 @@ module.exports = (elem)->
     '/textlist':
       component: require('./lib/text_list.vue')
   router.start App, elem
+  router

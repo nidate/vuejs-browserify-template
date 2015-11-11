@@ -5,14 +5,16 @@ module.exports = (elem)->
   Vue.use(VueRouter)
   App = Vue.extend
     template: """
-    <ul>
-      <li> <a v-link="{path: '/'}">JavaScript</a>
-      <li> <a v-link="{path: '/hellocoffee'}">Coffee script</a>
-      <li> <a v-link="{path: '/hellovueify'}">Vueify</a>
-      <li> <a v-link="{path: '/items'}">Event handling</a>
-      <li> <a v-link="{path: '/textlist'}">Components</a>
-    </ul>
-    <router-view id="content"></router-view>
+    <div>
+      <ul>
+        <li> <a v-link="{path: '/'}">JavaScript</a>
+        <li> <a v-link="{path: '/hellocoffee'}">Coffee script</a>
+        <li> <a v-link="{path: '/hellovueify'}">Vueify</a>
+        <li> <a v-link="{path: '/items'}">Event handling</a>
+        <li> <a v-link="{path: '/textlist'}">Components</a>
+      </ul>
+      <router-view id="content"></router-view>
+    </div>
     """
   router = new VueRouter
   router.map

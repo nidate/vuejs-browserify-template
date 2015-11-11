@@ -1,6 +1,6 @@
 var expect = chai.expect;
 
-describe('HellowVue', function() {
+describe('HelloVue', function() {
   before(function(done) {
     $('#test').empty();
     done();
@@ -11,10 +11,12 @@ describe('HellowVue', function() {
   });
 
   it('should render message', function(done) {
+    var Vue = require('vue');
     var app = require('vuejs-browserify-template');
-    app("#test")
-    
-    expect($('#content').text()).to.eq('Hello Vue.js');
-    done();
+    var router = app("#test");
+    Vue.nextTick(function() {
+      expect($('#content').text()).to.eq('Hello Vue.js');
+      done();
+    });
   });
 });

@@ -1,16 +1,18 @@
 expect = chai.expect
 
-describe 'HellowVue', () ->
+describe 'HelloVue.coffee', ->
   before (done)->
     $('#test').empty()
     do done
 
   after (done)->
-    $('#test').empty();
+    $('#test').empty()
     do done
 
   it 'should render message', (done)->
-    lib = require 'vuejs-browserify-template'
-    vue = new lib.HelloVue el: '#test'
-    expect($('#test div').text()).to.eq('Hello Vue.js')
-    do done
+    Vue = require 'vue'
+    app = require 'vuejs-browserify-template'
+    router = app '#test'
+    Vue.nextTick ->
+      expect($('#content').text()).to.eq('Hello Vue.js')
+      do done

@@ -1,6 +1,8 @@
 var gulp = require('gulp');
+var gulpif = require('gulp-if');
 var browserify = require('browserify');
 var stringify = require('stringify');
+var coffee = require('gulp-coffee');
 var coffeeify = require('coffeeify');
 var vueify = require('vueify');
 var source = require('vinyl-source-stream')
@@ -77,6 +79,7 @@ gulp.task('build-client-test', ['build'], function() {
     .pipe(concat('client_test_all.js'))
     .pipe(gulp.dest('./work/'));
 });
+//gulp.src(['./test/client/**_test.coffee']).pipe(coffee({bare: true}).on('error', gutil.log))
 
 gulp.task('client-test', ['build-client-test'], function() {
   return gulp.src('./work/runner.html').pipe(mochaPhantomJS());

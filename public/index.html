@@ -9,16 +9,7 @@
 <script src="js/vuejs-browserify-template.js" charset="utf-8"></script>
 </head>
 <body>
-  <div id="main">
-    <ul>
-      <li> <a v-link="{path: '/'}">JavaScript</a>
-      <li> <a v-link="{path: '/hellocoffee'}">Coffee script</a>
-      <li> <a v-link="{path: '/hellovueify'}">Vueify</a>
-      <li> <a v-link="{path: '/items'}">Event handling</a>
-      <li> <a v-link="{path: '/textlist'}">Components</a>
-    </ul>
-    <router-view id="content"></router-view>
-  </div>
+  <div id="main"></div>
   <script>
     var app = require('vuejs-browserify-template');
     app('#main')

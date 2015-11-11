@@ -3,7 +3,17 @@ VueRouter = require 'vue-router'
 
 module.exports = (elem)->
   Vue.use(VueRouter)
-  App = Vue.extend {}
+  App = Vue.extend
+    template: """
+    <ul>
+      <li> <a v-link="{path: '/'}">JavaScript</a>
+      <li> <a v-link="{path: '/hellocoffee'}">Coffee script</a>
+      <li> <a v-link="{path: '/hellovueify'}">Vueify</a>
+      <li> <a v-link="{path: '/items'}">Event handling</a>
+      <li> <a v-link="{path: '/textlist'}">Components</a>
+    </ul>
+    <router-view id="content"></router-view>
+    """
   router = new VueRouter
   router.map
     '/':

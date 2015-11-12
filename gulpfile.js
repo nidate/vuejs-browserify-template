@@ -74,12 +74,28 @@ gulp.task('unit-test', function() {
     .on('error', gutil.log);
 });
 
-gulp.task('build-client-test', ['build'], function() {
-  return gulp.src(['./test/client/**_test.js'])
-    .pipe(concat('client_test_all.js'))
+gulp.task('compile-client-test', ['build', 'clean-work'], function() {
+  gulp.src(
+    ['./test/client/**_test.coffee']
+  ).pipe(
+    coffee({bare: true}).on('error', gutil.log)
+  ).pipe(
+    gulp.dest('./work/')
+  )
+});
+
+gulp.task('copy-client-test', ['compile-client-test'], function() {
+  return gulp.src(['./test/client/**_test.js', './test/client/runner.html'])
     .pipe(gulp.dest('./work/'));
 });
-//gulp.src(['./test/client/**_test.coffee']).pipe(coffee({bare: true}).on('error', gutil.log))
+
+gulp.task('build-client-test', ['copy-client-test'], function() {
+  return gulp.src(
+    ['./work/**_test.js', '!./work/client_test_all.js']
+  ).pipe(
+    concat('client_test_all.js')
+  ).pipe(gulp.dest('./work/'));
+});
 
 gulp.task('client-test', ['build-client-test'], function() {
   return gulp.src('./work/runner.html').pipe(mochaPhantomJS());
@@ -87,6 +103,9 @@ gulp.task('client-test', ['build-client-test'], function() {
 
 gulp.task('test', ['unit-test', 'client-test']);
 
-gulp.task('clean', function() {
+gulp.task('clean-work', function() {
+  return gulp.src('./work/').pipe(clean());
+});
+gulp.task('clean', ['clean-work'], function() {
   return gulp.src(path.join(dest, target_file)).pipe(clean());
 });

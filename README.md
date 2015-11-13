@@ -4,7 +4,6 @@
 
 ```
 git clone [this repository]
-rm -fr .git
 ```
 
 Rename project name in package.json
@@ -29,6 +28,5 @@ npm test
 Run test/client/**_test.js code with mocha on PhantomJS.
 
 ## TODO
-- [ ] component test
-- [ ] coffee test task
 - [ ] CI integration
+- [ ] component test

@@ -1,5 +1,7 @@
 # Project Template for Vue.js and Browserify
 
+[![Build Status](https://travis-ci.org/nidate/vuejs-browserify-template.svg)](https://travis-ci.org/nidate/vuejs-browserify-template)
+
 ## How to use this.
 
 ```

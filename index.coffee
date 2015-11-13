@@ -3,7 +3,19 @@ VueRouter = require 'vue-router'
 
 module.exports = (elem)->
   Vue.use(VueRouter)
-  App = Vue.extend {}
+  App = Vue.extend
+    template: """
+    <div>
+      <ul>
+        <li> <a v-link="{path: '/'}">JavaScript</a>
+        <li> <a v-link="{path: '/hellocoffee'}">Coffee script</a>
+        <li> <a v-link="{path: '/hellovueify'}">Vueify</a>
+        <li> <a v-link="{path: '/items'}">Event handling</a>
+        <li> <a v-link="{path: '/textlist'}">Components</a>
+      </ul>
+      <router-view id="content"></router-view>
+    </div>
+    """
   router = new VueRouter
   router.map
     '/':
@@ -17,3 +29,4 @@ module.exports = (elem)->
     '/textlist':
       component: require('./lib/text_list.vue')
   router.start App, elem
+  router

@@ -1,6 +1,8 @@
 var gulp = require('gulp');
+var gulpif = require('gulp-if');
 var browserify = require('browserify');
 var stringify = require('stringify');
+var coffee = require('gulp-coffee');
 var coffeeify = require('coffeeify');
 var vueify = require('vueify');
 var source = require('vinyl-source-stream')
@@ -35,24 +37,24 @@ gulp.task('webserver', ['build'], function() {
 });
 
 gulp.task('watch', ['webserver'], function() {
-  gulp.watch(['index.js', 'lib/**/*', "!**/.#*", "!**/#*", "!**/*~"], ['build']);
+  gulp.watch(['index.*', 'lib/**/*', "!**/.#*", "!**/#*", "!**/*~"], ['build']);
 });
 
 /**
- * build index.js and copy to dest.
+ * build index.coffee and copy to dest.
  */
 exposify.config = {
   jquery: '$'
 };
 
 gulp.task('build', function() {
-  return browserify(['./index.js'])
+  return browserify(['./index.coffee'])
     .exclude('./node_modules/jquery/dist/jquery.js')
     .transform(coffeeify)
     .transform(exposify)
     .transform(stringify(['.html']))
     .transform(vueify)
-    .require('./index.js', {expose: project_name})
+    .require('./index.coffee', {expose: project_name})
     .require('vue')
     .bundle()
     .pipe(source(target_file))
@@ -72,10 +74,27 @@ gulp.task('unit-test', function() {
     .on('error', gutil.log);
 });
 
-gulp.task('build-client-test', ['build'], function() {
-  return gulp.src(['./test/client/**_test.js'])
-    .pipe(concat('client_test_all.js'))
+gulp.task('compile-client-test', ['build', 'clean-work'], function() {
+  gulp.src(
+    ['./test/client/**_test.coffee']
+  ).pipe(
+    coffee({bare: true}).on('error', gutil.log)
+  ).pipe(
+    gulp.dest('./work/')
+  )
+});
+
+gulp.task('copy-client-test', ['compile-client-test'], function() {
+  return gulp.src(['./test/client/**_test.js', './test/client/runner.html'])
     .pipe(gulp.dest('./work/'));
+});
+
+gulp.task('build-client-test', ['copy-client-test'], function() {
+  return gulp.src(
+    ['./work/**_test.js', '!./work/client_test_all.js']
+  ).pipe(
+    concat('client_test_all.js')
+  ).pipe(gulp.dest('./work/'));
 });
 
 gulp.task('client-test', ['build-client-test'], function() {
@@ -84,6 +103,9 @@ gulp.task('client-test', ['build-client-test'], function() {
 
 gulp.task('test', ['unit-test', 'client-test']);
 
-gulp.task('clean', function() {
+gulp.task('clean-work', function() {
+  return gulp.src('./work/').pipe(clean());
+});
+gulp.task('clean', ['clean-work'], function() {
   return gulp.src(path.join(dest, target_file)).pipe(clean());
 });

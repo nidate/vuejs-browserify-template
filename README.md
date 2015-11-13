@@ -29,4 +29,6 @@ npm test
 Run test/client/**_test.js code with mocha on PhantomJS.
 
 ## TODO
+- [ ] component test
 - [ ] coffee test task
+- [ ] CI integration

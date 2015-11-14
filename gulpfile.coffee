@@ -11,6 +11,7 @@ clean = require 'gulp-clean'
 plumber = require 'gulp-plumber'
 uglify = require 'gulp-uglifyjs'
 concat = require 'gulp-concat'
+open = require 'gulp-open'
 path = require 'path'
 webserver = require 'gulp-webserver'
 mochaPhantomJS = require 'gulp-mocha-phantomjs'
@@ -24,13 +25,17 @@ dest = './public/js/';
 gulp.task 'default', ['watch']
 
 gulp.task 'webserver', ['build'], ()->
+  host = '0.0.0.0'
+  port= 8888
   gulp.src 'public'
   .pipe webserver
-    host: '0.0.0.0',
+    host: host
     livereload: true,
-    port: 8888,
+    port: port,
     filter: (filename)->
       filename.match(/public/)
+  .pipe open
+    uri: "http://#{host}:#{port}/"
 
 gulp.task 'watch', ['webserver'], ()->
   gulp.watch ['index.*', 'lib/**/*', "!**/.#*", "!**/#*", "!**/*~"], ['build']

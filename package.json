@@ -32,7 +32,8 @@
     "gulp-concat": "~2.6.0",
     "gulp-if": "^2.0.0",
     "gulp-mocha-phantomjs": "~0.10.1",
-    "gulp-webserver": "~0.9.1"
+    "gulp-webserver": "~0.9.1",
+    "gulp-open": "^1.0.0"
   },
   "dependencies": {
     "coffee-script": "~1.10.0",

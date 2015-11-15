@@ -1,7 +1,9 @@
-<ul>
-  <li v-for="item in items">
-    {{ item.message }}
-  </li>
-</ul>
+<div>
+  <ul>
+    <li v-for="item in items">
+      {{ item.message }}
+    </li>
+  </ul>
 
-<input type="text" v-model="message" v-on:keyup.enter="addItem" />
+  <input type="text" v-model="message" v-on:keyup.enter="addItem" />
+</div>

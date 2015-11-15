@@ -1,6 +1,5 @@
 <template lang="jade">
-.text
-  {{text}}
+.text {{text}}
 </template>
 
 <script lang="coffee">

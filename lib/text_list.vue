@@ -1,6 +1,6 @@
 <template lang="jade">
-div(v-for='item in list')
-  text-component(:text='item.text')
+div
+  text-component(v-for='item in list', :text='item.text')
 </template>
 
 <script lang="coffee">

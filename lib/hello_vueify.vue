@@ -4,7 +4,8 @@
 </style>
 
 <template lang="jade">
-h1(class="red") {{msg}}
+div
+  h1.red {{msg}}
 </template>
 
 <script lang="coffee">

@@ -54,8 +54,11 @@ gulp.task 'build', ()->
   .require('./index.coffee', {expose: project_name})
   .require('vue')
   .bundle()
-  .pipe(source(target_file))
+  .on 'error', (err)->
+    console.error err.message
+    @emit 'end'
   .pipe(plumber())
+  .pipe(source(target_file))
   .pipe(gulp.dest(dest))
 
 gulp.task 'uglify', ['build'], ()->

@@ -22,11 +22,12 @@ project_name = config.name;
 target_file = project_name + '.js';
 dest = './public/js/';
 
+host = '0.0.0.0'
+port = 8888
+
 gulp.task 'default', ['watch']
 
 gulp.task 'webserver', ['build'], ()->
-  host = '0.0.0.0'
-  port= 8888
   gulp.src 'public'
   .pipe webserver
     host: host
@@ -34,12 +35,12 @@ gulp.task 'webserver', ['build'], ()->
     port: port,
     filter: (filename)->
       filename.match(/public/)
-  .pipe open
-    uri: "http://#{host}:#{port}/"
 
 gulp.task 'watch', ['webserver'], ()->
+  gulp.src ['./index.coffee']
+  .pipe open
+    uri: "http://#{host}:#{port}/"
   gulp.watch ['index.*', 'lib/**/*', "!**/.#*", "!**/#*", "!**/*~"], ['build']
-
 
 exposify.config =
   jquery: '$'
